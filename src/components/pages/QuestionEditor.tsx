@@ -170,7 +170,9 @@ export const QuestionEditor: React.FC = () => {
             <AlertCircle className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <p className="text-gray-500 text-lg mb-2">No questions available</p>
             <p className="text-gray-400 text-sm">
-              Upload a PDF file with questions to get started
+              Upload a PDF file with numbered questions to get started.
+              <br />
+              Questions should be numbered (1., 2., 3., etc.) and include CO, Level, and Marks information.
             </p>
           </div>
         )}

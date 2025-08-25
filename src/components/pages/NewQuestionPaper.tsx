@@ -38,6 +38,8 @@ export const NewQuestionPaper: React.FC = () => {
     if (selectedFile) {
       try {
         console.log('NewQuestionPaper: Starting to process file:', selectedFile.name);
+        console.log('NewQuestionPaper: File type:', selectedFile.type);
+        console.log('NewQuestionPaper: File size:', selectedFile.size);
         await processUploadedFile(selectedFile);
         console.log('NewQuestionPaper: File processed successfully, navigating to editor');
         setCurrentPage('question-editor');

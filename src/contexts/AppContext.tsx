@@ -75,11 +75,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       setIsProcessingFile(true);
       setUploadedFile(file);
 
+      // Clear any existing questions first
+      setQuestions([]);
+
       // Extract text from PDF
       console.log('Extracting text from PDF...');
       const extractedText = await pdfProcessor.extractTextFromPDF(file);
       console.log('Extracted text length:', extractedText.length);
-      console.log('First 500 characters:', extractedText.substring(0, 500));
+      console.log('First 1000 characters:', extractedText.substring(0, 1000));
 
       // Parse questions from extracted text
       console.log('Parsing questions from text...');
@@ -90,6 +93,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       console.log('Converting to Question objects...');
       const parsedQuestions = pdfProcessor.convertToQuestions(extractedQuestions);
       console.log('Parsed questions:', parsedQuestions);
+
+      if (parsedQuestions.length === 0) {
+        throw new Error('No questions could be extracted from the PDF. Please ensure the PDF contains a properly formatted question table with numbered questions.');
+      }
 
       // Update questions in context
       console.log('Setting questions in context...');
